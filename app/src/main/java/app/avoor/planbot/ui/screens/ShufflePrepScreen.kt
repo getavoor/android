@@ -38,6 +38,6 @@ fun ShufflePrepScreen(
         verticalArrangement = Arrangement.Center
     ) {
         CircularProgressIndicator()
-        Text(splashes[Random.nextInt(0..splashes.size)])
+        Text(splashes[Random.nextInt(0..< splashes.size)])
     }
 }
