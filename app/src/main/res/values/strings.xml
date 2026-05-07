@@ -1,0 +1,246 @@
+<resources>
+    <string name="app_name">Avoor</string>
+
+    <!-- login and registration -->
+    <string name="nux_login_title">Sign in</string>
+    <string name="nux_register_title">Let\'s get to know you</string>
+    <string name="login_input_email">Email</string>
+    <string name="login_input_password">Password</string>
+    <string name="login_input_name">Name</string>
+    <string name="login_input_password_confirm">Confirm password</string>
+    <string name="login_input_password_hide">Hide password</string>
+    <string name="login_input_password_show">Show password</string>
+    <string name="login_button">Sign in</string>
+    <string name="login_button_reg">Sign up</string>
+    <string name="auto_sign_in">Signing you in…</string>
+    <string name="login_reg_cta">Don\'t have an account?</string>
+    <string name="login_password_valid_len">Password is too short</string>
+    <string name="login_password_valid_upper">Must include at least 1 uppercase letter</string>
+    <string name="login_password_valid_lower">Must include at least 1 lowercase letter</string>
+    <string name="login_password_valid_digit">Must include at least 1 number</string>
+    <string name="login_password_valid_symbol">Must include at least 1 symbol</string>
+    <string name="login_password_no_match">Passwords don\'t match</string>
+    <string name="verify_open_email">Open email app</string>
+
+    <!-- nux - calendar usage -->
+    <string name="nux_calendar_usage_title">Let\'s see your schedule</string>
+    <string name="nux_calendar_usage_desc">Avoor reads your calendar so the timer knows what you\'re supposed to be working on. Nothing is added or changed without your permission, and your calendar data stays on your device.</string>
+    <string name="nux_permission_allow">Allow</string>
+    <string name="nux_notification_usage_title">One more thing…</string>
+    <string name="nux_notification_usage_desc">Avoor needs notifications to keep the timer running in the background. Without it, your device might cut it off mid-session.</string>
+    <!-- nux - streaks -->
+    <string name="nux_streak_title">Your streak</string>
+    <string name="nux_streak_body_phase1">Time for the fun part! This is your streak. Your streak counts every day you use the timer. Let\'s get day 1 out of the way.</string>
+    <string name="nux_streak_body_phase2">
+        Skip a day, the streak resets. But life happens, and that\'s where streak skips save you. A streak skip protects your streak from getting reset. You only have 3 of them.
+    </string>
+    <!-- nux - plancoins -->
+    <string name="nux_plancoin_title">Plancoins</string>
+    <string name="nux_plancoin_body">
+        Plancoins are Avoor\'s official currency — totally fake, yet weirdly satisfying to earn. Earn them by tracking time using the timer, then spend them on rewards you choose yourself. So — what\'s the first thing you want to spend them on?
+    </string>
+    <!-- nux - end -->
+    <string name="nux_end_title">That\'s it!</string>
+    <string name="nux_end_desc_generic">You\'re now ready to use Avoor.</string>
+    <string name="nux_end_desc_event_soon">%s is coming up — perfect time to try out Avoor in action.</string>
+    <string name="nux_end_desc_event_now">Looks like you\'re in the middle of %s — want to time the rest of it?</string>
+
+    <!-- calendar picker -->
+    <string name="many_calendars_title">Select a default calendar</string>
+    <string name="many_calendars_desc">Avoor detected multiple calendars on your device. </string>
+
+    <!-- navigation bar -->
+    <string name="main_nav_home">Home</string>
+    <string name="main_nav_profile">Account</string>
+    <string name="main_nav_settings">Settings</string>
+
+    <!-- profile page -->
+    <string name="profile_setting_pfp_title">Add a profile picture</string>
+    <string name="profile_setting_pfp_desc">Upload a profile picture.</string>
+    <string name="profile_setting_logout_title">Sign out</string>
+    <string name="profile_setting_logout_desc">Sign out of this account.</string>
+    <string name="profile_setting_delete_title">Delete account</string>
+    <string name="profile_setting_delete_desc">Delete this account and all data associated with it.</string>
+
+    <!-- settings -->
+    <string name="setting_clearCache_title">Clear temporary data</string>
+    <string name="setting_clearCache_desc">Avoor currently uses %s of space. This will free up space but will cause some parts of the app to load slower.</string>
+    <string name="setting_clearCache_toast">Data has been cleared.</string>
+    <string name="setting_pomo_group">Timer settings</string>
+    <string name="setting_pomoMode_title">Timer mode</string>
+    <string name="setting_pomoMode_pomo_title">Pomodoro</string>
+    <string name="setting_pomoMode_pomo_desc">Your timer will work based on the Pomodoro technique: you will be given time to focus, then a short break.</string>
+    <string name="setting_pomoMode_reg_title">Regular</string>
+    <string name="setting_pomoMode_reg_desc">Your timer will count down the time until a time block ends.</string>
+    <string name="setting_pomoDur_title">Timer duration</string>
+    <!-- work time/break time -->
+    <string name="setting_pomoDur_option_preset">%d/%d</string>
+    <string name="setting_pomoDur_option_classic">Classic</string>
+    <string name="setting_pomoDur_option_extended">Extended</string>
+    <string name="setting_pomoDur_option_custom">Custom</string>
+    <string name="setting_pomoDur_option_desc">%d minutes of work time followed by a %d minute break.</string>
+    <string name="setting_pomoHaptics_title">Timer haptics</string>
+    <string name="setting_pomoHaptics_off_name">Off</string>
+    <!-- TODO this sounds like the setting disables all vibration, not just that of the timer -->
+    <string name="setting_pomoHaptics_off_desc">Your device will not vibrate when your timer is running.</string>
+    <string name="setting_pomoHaptics_mid_name">Rarely</string>
+    <string name="setting_pomoHaptics_mid_desc_pomo">Your device will vibrate once break time starts and ends.</string>
+    <string name="setting_pomoHaptics_mid_desc_reg">Your device will vibrate once a time block ends.</string>
+    <string name="setting_pomoHaptics_hi_name">Often</string>
+    <string name="setting_pomoHaptics_hi_desc_pomo">You will feel your timer tick, and your device will also vibrate once break time starts and ends.</string>
+    <string name="setting_pomoHaptics_hi_desc_reg">You will feel your timer tick, and your device will also vibrate once a time block ends.</string>
+
+    <!-- calendar -->
+    <string name="cal_empty_title">No plans!</string>
+    <string name="cal_empty_desc">Enjoy the day off or tap + to create a plan.</string>
+
+    <!-- group discovery -->
+    <!-- TODO [fluff] final copy -->
+    <string name="dsc_group_created">dsc_group_created</string>
+    <string name="dsc_group_progress">dsc_group_progress</string>
+    <string name="share_group_link">share_group_link %s</string>
+    <string name="dsc_group_guests">dsc_group_guests</string>
+    <string name="dsc_group_members">dsc_group_members</string>
+    <string name="dsc_group_title">dsc_group_title</string>
+    <string name="dsc_join_guest_title">dsc_join_guest_title</string>
+    <string name="dsc_join_guest_body">dsc_join_guest_body</string>
+    <string name="dsc_join_member_title">dsc_join_member_title</string>
+    <string name="dsc_join_member_body">dsc_join_member_body</string>
+
+    <!-- dialogs -->
+    <string name="dlg_update_title">Update Avoor</string>
+    <string name="dlg_update_body">This version is no longer supported. To continue, please update Avoor from Google Play.</string>
+    <string name="dlg_update_action">Update</string>
+    <string name="dlg_connerror_title">Service unavailable</string>
+    <string name="dlg_connerror_body">The Avoor servers are unavailable. Please check your Internet connection and try again later.</string>
+    <string name="dlg_failed_title">Oops!</string>
+    <string name="dlg_failed_body">Something went wrong. Don\'t worry, we\'re working on it. Please try again later.</string>
+    <string name="dlg_link_title">Invalid link</string>
+    <string name="dlg_link_body">This link is invalid or has expired.</string>
+    <string name="dlg_copied">Copied</string>
+    <string name="try_again">Try again</string>
+    <string name="ok">OK</string>
+
+    <!-- size strings (generic) -->
+    <string name="storage_kb">%.1f KB</string>
+    <string name="storage_mb">%.1f MB</string>
+    <string name="storage_gb">%.1f GB</string>
+    <string name="storage_b">%.1f B</string>
+
+    <!-- verification -->
+    <string name="verify_cta_title">Almost there!</string>
+    <string name="verify_cta">A confirmation link has been sent. Please check your email (check the spam folder too!) and click on the link to finish registration.</string>
+    <string name="verify_complete_title">Account confirmed!</string>
+    <string name="verify_complete">Before you can start exploring, pick your favorite restaurants.</string>
+    <string name="verify_in_progress">Confirming your account…</string>
+    <string name="verify_resend_cta">Didn\'t receive it?</string>
+    <string name="verify_resend">Resend it</string>
+    <string name="verify_login_cta">Already have an account?</string>
+    <string name="verify_login">Sign in</string>
+    <string name="verify_resend_success">Done, now check your email.</string>
+
+    <!-- notifications -->
+    <string name="notification_channel_pomodoro">Timer</string>
+    <string name="timer_notif_left">%02d:%02d left</string>
+    <string name="timer_notif_left_hour">%02d:%02d:%02d left</string>
+    <string name="timer_notif_focusing">Focusing on %s</string>
+    <string name="pomodoro_action_stop">Stop timer</string>
+    <string name="pomodoro_no_event">(no event)</string>
+    <string name="pomodoro_placeholder_noti">Getting ready…</string>
+
+    <!-- pomodoro -->
+    <string name="pomodoro_screen_break">Break time!</string>
+
+    <!-- account deletion -->
+    <string name="delete_feedback_title">Before you go</string>
+    <string name="delete_feedback_text">Please share why you want to delete your account. Your feedback helps improve Avoor.</string>
+    <string name="delete_feedback_reason_recs">The recommendations aren\'t accurate</string>
+    <string name="delete_feedback_reason_ui">The app is hard to use</string>
+    <string name="delete_feedback_reason_slow">The app is slow</string>
+    <string name="delete_feedback_reason_other">Other</string>
+    <string name="delete_feedback_reason_field">Reason</string>
+    <string name="delete_warn_title">Delete account?</string>
+    <string name="delete_warn_body">Any information about your account, including streaks and rewards, will be permanently deleted from Avoor\'s servers.</string>
+    <string name="delete_warn_plans">Created plans will stay on your device\'s calendar. These plans may be synchronized to other services depending on your device\'s settings. Deleting your account has no effect on this.</string>
+    <string name="delete_warn_google">As Avoor\'s plan assistant uses Google\'s Gemini AI models, Google may store plans generated using it even if you\'re not using Google Calendar. Deleting your account has no effect on this. To find out more, see Google\'s privacy policy.</string>
+    <string name="delete_warn_model_by_company">As Avoor\'s plan assistant uses models developed by %1$s, %1$s may store plans generated using it. Deleting your account has no effect on this. To find out more, see %1$s\'s privacy policy.</string>
+    <string name="delete_warn_model">As Avoor\'s plan assistant uses %1$s\'s %2$s models, %1$s may store plans generated using it. Deleting your account has no effect on this. To find out more, see %1$s\'s privacy policy.</string>
+    <string name="dlg_delete_title">Account deleted</string>
+    <string name="dlg_delete_body">Thanks for using Avoor!</string>
+
+    <!-- generic strings -->
+    <string name="streak">Streak</string>
+
+    <!-- streak screen -->
+    <string name="streak_current">Current streak</string>
+    <string name="streak_freeze_label">Streak freezes</string>
+    <string name="streak_longest">Longest streak</string>
+    <string name="streak_updated_today">Updated today</string>
+    <string name="streak_not_updated">Complete a focus session to update</string>
+    <string name="streak_freeze_used">Freeze used today</string>
+    <string name="streak_freeze_available">Available</string>
+    <string name="streak_use_freeze">Use Streak Freeze</string>
+    <string name="streak_refresh">Refresh</string>
+    <string name="streak_info_title">About streaks</string>
+    <string name="streak_info_desc_l1">Complete at least one focus session each day to maintain your streak. Missing a day will reset your streak to zero.</string>
+    <string name="streak_info_desc_l2">Streak freezes protect your streak for one day. If you miss a day and have a freeze available, it will be used automatically.</string>
+
+    <!-- plancoin screen -->
+    <string name="plancoin_reward_group">Your rewards</string>
+    <string name="plancoin_reward_buy">Get</string>
+    <string name="plancoin_reward_create">Add</string>
+    <string name="plancoin_reward_name_field">Reward</string>
+    <string name="plancoin_reward_name_desc">Tip: be as ambitious as you want, but consider making realistic, obtainable rewards.</string>
+    <!-- accessibility description of the + icon next to "Your rewards", also used in nux -->
+    <string name="plancoin_reward_add">Add reward</string>
+    <!-- accessibility description of the long press action of a plancoin reward -->
+    <string name="plancoin_reward_edit_desc">Edit reward</string>
+    <string name="plancoin_reward_edit">Edit</string>
+    <string name="plancoin_reward_delete">Delete</string>
+
+    <!-- nux start screen -->
+    <string name="nux_start_title">Welcome to Avoor</string>
+    <string name="nux_start_body">The hard part is over. A few quick steps, and everything will be under control.</string>
+
+    <!-- generic buttons -->
+    <string name="btn_share">Share</string>
+    <string name="btn_copy">Copy</string>
+    <string name="btn_approve">Approve</string>
+    <string name="btn_back">Back</string>
+    <string name="done">Done</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="close">Close</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="cost">Cost</string>
+    <string name="price">Price</string>
+
+    <!-- shuffle -->
+    <string name="main_nav_shuffle">Shuffle</string>
+    <string name="dlg_shuffle_enable_title">Shuffle your day?</string>
+    <string name="dlg_shuffle_enable_desc">Once you shuffle your day, you can\'t go back to how it was planned before you shuffled it</string>
+    <string name="dlg_shuffle_enable_cancel">No</string>
+    <string name="dlg_shuffle_enable_ok">Shuffle</string>
+
+    <!-- shown in the event (time block) card below the event name,
+         %1$s - start time (e.g. 09:00), %2$s - end time (e.g. 12:30) -->
+    <string name="event_hours">%1$s - %2$s</string>
+    <!-- same as event_hours, used for when an event ends a day
+         after it starts (e.g. 22:00 - 08:00 next day) -->
+    <string name="event_hours_next_day">%1$s - %2$s next day</string>
+    <!-- same as event_hours, used for when an event start a day
+         before it starts (e.g. 22:00 previous day - 08:00) -->
+    <string name="event_hours_previous_day">%1$s previous day - %2$s</string>
+    <string name="btn_about">About</string>
+    <string name="title_activity_kill_canary256">KillCanary256Activity</string>
+
+    <!-- accessibility descriptions -->
+    <string name="desc_main_focus">Start timer</string>
+    <string name="desc_main_streak">Your streak</string>
+    <string name="main_nav_plancoin">Plancoins</string>
+
+    <!-- descriptions for number picker -->
+    <string name="number_picker_increase">Increase</string>
+    <string name="number_picker_decrease">Decrease</string>
+</resources>

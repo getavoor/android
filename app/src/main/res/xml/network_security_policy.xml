@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">192.168.10.43</domain>
+        <domain includeSubdomains="true">192.168.10.80</domain>
+        <!-- To add another test IP (or domain that doesn't support HTTPS), add it similarly
+             to the one above. -->
+    </domain-config>
+</network-security-config>

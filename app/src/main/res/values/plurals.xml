@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="plancoins">
+        <item quantity="one">Plancoin</item>
+        <item quantity="other">Plancoins</item>
+    </plurals>
+    <plurals name="plancoin_cost">
+        <item quantity="one">%d plancoin</item>
+        <item quantity="other">%d plancoins</item>
+    </plurals>
+    <plurals name="multilanguage_test">
+        <item quantity="one">雪花飘飘北风萧萧</item>
+        <item quantity="other">流れてく時の中ででも</item>
+    </plurals>
+    <!-- accessibility description for the streak row -->
+    <plurals name="streak_freeze_left">
+        <item quantity="one">%d streak freeze left</item>
+        <item quantity="other">%d streak freezes left</item>
+    </plurals>
+
+    <plurals name="streak_days">
+        <item quantity="other">day streak</item>
+    </plurals>
+</resources>
