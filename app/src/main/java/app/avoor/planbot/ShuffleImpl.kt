@@ -26,5 +26,7 @@ class ShuffleImpl(
             val (newStart, newEnd) = timeSlots[i]
             calendarRepository.reschedule(event, newStart, newEnd)
         }
+
+        calendarRepository.reloadEvents()
     }
 }

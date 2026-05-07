@@ -10,11 +10,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.withTimeoutOrNull
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn
@@ -58,6 +61,10 @@ class AndroidCalendarRepository(
 
     private var calendarCache: List<CalendarEvent> = listOf()
     private var calendarCacheUpdated: Long = 0
+
+    // used to force _currentEvent to recheck the calendar repo
+
+    private val _forceRecheck = MutableSharedFlow<Unit>(extraBufferCapacity = 1)
 
     private fun queryEvents(
         selection: String? = null,
@@ -333,10 +340,10 @@ class AndroidCalendarRepository(
                 // wait until the event ends, then recheck
                 val delayMs = event.endDate.toEpochMilliseconds().minus(now.toEpochMilliseconds())
                 Log.d("avr#acr", "delayMs=${delayMs} endDate=${event.endDate.toEpochMilliseconds()} now=${now.toEpochMilliseconds()}")
-                delay(delayMs.coerceAtLeast(1000L))
+                delayUnlessForceRecheck(delayMs.coerceAtLeast(1000L))
             } else {
                 // if it hasn't, wait for the maximum
-                delay(MAX_RECHECK_MS)
+                delayUnlessForceRecheck(MAX_RECHECK_MS)
             }
         }
     }
@@ -348,4 +355,13 @@ class AndroidCalendarRepository(
         )
 
     override fun getCurrentEvent(): Flow<LocalCalendarEvent?> = _currentEvent
+    override fun reloadEvents() {
+        _forceRecheck.tryEmit(Unit)
+    }
+
+    suspend fun delayUnlessForceRecheck(ms: Long) {
+        withTimeoutOrNull(ms) {
+            _forceRecheck.first() // suspends until a force recheck event arrives
+        }
+    }
 }

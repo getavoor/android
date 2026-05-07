@@ -215,6 +215,10 @@ class DemoCalendarRepository: CalendarRepository {
         }
     }
 
+    override fun reloadEvents() {
+        // DemoCalendarRepository runs fully in memory, so it doesn't need a cache reset
+    }
+
     override suspend fun findEvents(query: String): List<CalendarEvent> {
         TODO("Not yet implemented")
     }

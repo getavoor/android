@@ -66,4 +66,12 @@ interface CalendarRepository {
      * Can be null if there is no event right now.
      */
     fun getCurrentEvent(): Flow<LocalCalendarEvent?>
+
+    /**
+     * Reload the list of events.
+     *
+     * If this repository holds a cache of events, it should be cleared.
+     * Otherwise, this function can be left empty.
+     */
+    fun reloadEvents()
 }
