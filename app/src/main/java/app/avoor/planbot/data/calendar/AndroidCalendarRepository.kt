@@ -197,40 +197,60 @@ class AndroidCalendarRepository(
         start: Instant,
         end: Instant
     ) {
-
-        // fetch the calendar ID from the original event
         val eventUri = ContentUris.withAppendedId(CalendarContract.Events.CONTENT_URI, event.id.toLong())
-        val calendarId = contentResolver.query(
+
+        // check if it's recurring
+        val isRecurring = contentResolver.query(
             eventUri,
-            arrayOf(Events.CALENDAR_ID),
+            arrayOf(Events.RRULE),
             null, null, null
         )?.use {
-            if (it.moveToFirst()) it.getLong(0) else null
-        } ?: return  // bail if we can't find the event
+            if (it.moveToFirst()) !it.getString(0).isNullOrEmpty() else false
+        } ?: false
 
-        // create values
-        val values = ContentValues().apply {
-            put(Events.CALENDAR_ID, calendarId)
+        if (isRecurring) {
+            // fetch the calendar ID from the original event
+            val calendarId = contentResolver.query(
+                eventUri,
+                arrayOf(Events.CALENDAR_ID),
+                null, null, null
+            )?.use {
+                if (it.moveToFirst()) it.getLong(0) else null
+            } ?: return  // bail if we can't find the event
 
-            // copy the title of the original event
-            put(Events.TITLE, event.name)
+            // create values
+            val values = ContentValues().apply {
+                put(Events.CALENDAR_ID, calendarId)
 
-            // use the new start/end dates
-            put(Events.DTSTART, start.toEpochMilliseconds())
-            put(Events.DTEND, end.toEpochMilliseconds())
-            put(Events.EVENT_TIMEZONE, "UTC")
-            put(Events.EVENT_END_TIMEZONE, "UTC")
+                // copy the title of the original event
+                put(Events.TITLE, event.name)
 
-            // tell the calendar this is an exception to a specific instance
-            put(Events.ORIGINAL_ID, event.id)
-            put(Events.ORIGINAL_INSTANCE_TIME, event.startDate.toEpochMilliseconds())
+                // use the new start/end dates
+                put(Events.DTSTART, start.toEpochMilliseconds())
+                put(Events.DTEND, end.toEpochMilliseconds())
+                put(Events.EVENT_TIMEZONE, "UTC")
+                put(Events.EVENT_END_TIMEZONE, "UTC")
 
-            // mark it as an exception (not a new standalone event)
-            put(Events.STATUS, Events.STATUS_CONFIRMED)
+                // tell the calendar this is an exception to a specific instance
+                put(Events.ORIGINAL_ID, event.id)
+                put(Events.ORIGINAL_INSTANCE_TIME, event.startDate.toEpochMilliseconds())
+
+                // mark it as an exception (not a new standalone event)
+                put(Events.STATUS, Events.STATUS_CONFIRMED)
+            }
+
+            // insert as a new event — this creates the exception instance
+            contentResolver.insert(Events.CONTENT_URI, values)
+        } else {
+            // just update the existing event directly
+            val values = ContentValues().apply {
+                put(Events.DTSTART, start.toEpochMilliseconds())
+                put(Events.DTEND, end.toEpochMilliseconds())
+                put(Events.EVENT_TIMEZONE, "UTC")
+                put(Events.EVENT_END_TIMEZONE, "UTC")
+            }
+            contentResolver.update(eventUri, values, null, null)
         }
-
-        // insert as a new event — this creates the exception instance
-        contentResolver.insert(Events.CONTENT_URI, values)
         Log.d("avr#rta", "$start - $end")
     }
 
