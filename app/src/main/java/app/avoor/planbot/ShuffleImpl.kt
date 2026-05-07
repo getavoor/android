@@ -8,7 +8,10 @@ class ShuffleImpl(
 ) {
     private val shuffleUtils = ShuffleUtils()
 
-    suspend fun shuffle() {
+    /**
+     * Shuffles the user's calendar events.
+     */
+    suspend fun shuffleEvents() {
         val events = calendarRepository.getEvents()
         if (events.size <= 1) return
 
