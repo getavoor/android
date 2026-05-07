@@ -65,6 +65,7 @@ import app.avoor.planbot.ui.screens.NuxStartScreen
 import app.avoor.planbot.ui.screens.NuxStreakScreen
 import app.avoor.planbot.ui.screens.PlancoinScreen
 import app.avoor.planbot.ui.screens.RegisterScreen
+import app.avoor.planbot.ui.screens.ShufflePrepScreen
 import app.avoor.planbot.ui.screens.StreakScreen
 import app.avoor.planbot.ui.screens.TimelineTestScreen
 import app.avoor.planbot.ui.screens.VerifyCompleteScreen
@@ -290,6 +291,12 @@ class MainActivity : ComponentActivity() {
                                 context = this@MainActivity,
                                 navigator = navigator,
                                 prefStore = (application as AvoorApplication).container.preferenceStore
+                            )
+                        }
+                        composable(route = Screen.SHUFFLE_PREP.toString()) {
+                            ShufflePrepScreen(
+                                (application as AvoorApplication).container.shuffleImpl,
+                                navigator
                             )
                         }
                     }

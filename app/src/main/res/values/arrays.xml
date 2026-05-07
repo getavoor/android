@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="discovery_loading">
-        <item>Calculating the optimal flavor profile…</item>
-        <item>Matching your taste buds with the perfect place…</item>
-        <item>Exploring hidden culinary gems…</item>
-        <item>Curating a world of flavors for you…</item>
-        <item>Connecting you to your next gastronomic adventure…</item>
-        <item>Cooking up the perfect restaurant recommendation…</item>
-        <item>Matching you with deliciousness…</item>
+    <string-array name="shuffle_loading">
+        <item>Ordering chaos…</item>
+        <item>Rolling the perfect dice…</item>
+        <item>Maximizing user engagement…</item>
+        <item>Adding a touch of randomness…</item>
+        <item>Thinking of new permutations…</item>
     </string-array>
 </resources>
