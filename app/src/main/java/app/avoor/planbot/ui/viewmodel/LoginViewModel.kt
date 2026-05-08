@@ -76,7 +76,15 @@ class LoginViewModel (
                     _uiState.value.email,
                     _uiState.value.password
                 )
-                if (resp != 200) {
+                // detect internal server error as a connection error
+                if (resp == 500) {
+                    _uiState.update {
+                        it.copy(
+                            showConnectionError = true
+                        )
+                    }
+                }
+                else if (resp != 200) {
                     _uiState.update {
                         it.copy(
                             invalidCredentials = true
