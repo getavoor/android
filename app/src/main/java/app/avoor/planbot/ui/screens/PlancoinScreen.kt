@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -54,6 +55,7 @@ import app.avoor.symbols.Icons
 import app.avoor.symbols.icons.Add
 import app.avoor.symbols.icons.ArrowBack
 import app.avoor.symbols.icons.Info
+import tech.cataspect.m3x.MaterialListStyling
 import tech.cataspect.m3x.materialListItems
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -70,7 +72,8 @@ fun PlancoinScreen(
     val editBottomState = rememberModalBottomSheetState(
         skipPartiallyExpanded = false
     )
-    var showEditReward by remember { mutableStateOf(false) }
+    var showRewardContextMenu by remember { mutableStateOf(false) }
+    var showRewardEditor by remember { mutableStateOf(false) }
     var selectedReward by remember { mutableStateOf<PlancoinReward?>(null) }
 
     var addRewardName by remember { mutableStateOf("") }
@@ -179,7 +182,7 @@ fun PlancoinScreen(
                             onLongClick = {
                                 haptics.performHapticFeedback(HapticFeedbackType.LongPress)
                                 selectedReward = it
-                                showEditReward = true
+                                showRewardContextMenu = true
                             },
                             onLongClickLabel = stringResource(R.string.plancoin_reward_edit_desc)
                         )
@@ -224,9 +227,9 @@ fun PlancoinScreen(
     }
 
     // Edit reward screen
-    if (showEditReward) {
+    if (showRewardContextMenu) {
         ModalBottomSheet(
-            onDismissRequest = { showEditReward = false },
+            onDismissRequest = { showRewardContextMenu = false },
             sheetState = editBottomState,
         ) {
             selectedReward?.let { reward ->
@@ -238,21 +241,31 @@ fun PlancoinScreen(
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
                     Surface(
-                        Modifier.padding(8.dp)
+                        modifier = Modifier.padding(8.dp),
+                        shape = RoundedCornerShape(MaterialListStyling.Default.cornerRadius)
                     ) {
                         RewardBody(
                             reward,
                             false
                         ) {}
-                        Text(
-                            "Edit reward",
-                            Modifier.fillMaxWidth().clickable(
-                                onClick = {
-                                    viewModel.deleteReward(reward)
-                                }
-                            ).padding(8.dp)
-                        )
                     }
+                    Text(
+                        "Edit reward",
+                        Modifier.fillMaxWidth().clickable(
+                            onClick = {
+                                showRewardEditor = true
+                            }
+                        ).padding(8.dp)
+                    )
+                    Text(
+                        "Delete reward",
+                        Modifier.fillMaxWidth().clickable(
+                            onClick = {
+                                showRewardContextMenu = false
+                                viewModel.deleteReward(reward)
+                            }
+                        ).padding(8.dp)
+                    )
                 }
             }
         }

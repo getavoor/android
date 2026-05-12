@@ -112,7 +112,17 @@ class PlancoinViewModel(
         }
     }
 
-    fun deleteReward(reward: PlancoinReward) {}
+    fun deleteReward(reward: PlancoinReward) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                rewardDao.delete(reward)
+            }
+            // reload the list
+            loadRewards()
+            // show a message
+            showError("Reward deleted")
+        }
+    }
 
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
