@@ -1,5 +1,6 @@
 package app.avoor.planbot.ui.screens
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -33,6 +34,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import app.avoor.planbot.R
 import app.avoor.planbot.ui.components.ConnectionErrorDialog
 import app.avoor.planbot.ui.components.FailedActionDialog
+import app.avoor.planbot.ui.components.LoadingBar
 import app.avoor.planbot.ui.navigator.Navigator
 import app.avoor.planbot.ui.viewmodel.Screen
 import app.avoor.planbot.ui.viewmodel.VerifyResendViewModel
@@ -109,6 +111,10 @@ fun VerifyScreen(
                     .padding(12.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
+                AnimatedVisibility(viewState.progress) {
+                    LoadingBar()
+                }
+
                 Text(
                     stringResource(R.string.verify_cta),
                     Modifier.fillMaxWidth()
