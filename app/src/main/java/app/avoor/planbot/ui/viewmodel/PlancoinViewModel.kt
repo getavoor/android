@@ -58,12 +58,24 @@ class PlancoinViewModel(
         }
     }
 
-    fun showError(error: String) {
-        _uiState.update { it.copy(error = error) }
+    fun showMessage(message: PlancoinMessage) {
+        _uiState.update { it.copy(
+            message = message
+        ) }
     }
 
-    fun clearError() {
-        _uiState.update { it.copy(error = null) }
+    fun showError(error: String) {
+        _uiState.update { it.copy(
+            message = PlancoinMessage.GENERAL_ERROR,
+            errorDesc = error
+        ) }
+    }
+
+    fun clearMessage() {
+        _uiState.update { it.copy(
+            message = null,
+            errorDesc = null
+        ) }
     }
 
     fun buy(reward: PlancoinReward) {
@@ -72,7 +84,11 @@ class PlancoinViewModel(
             val result = plancoinController.buyReward(reward)
             // if we couldn't buy the reward, show an error
             if (!result) {
-                showError("Not enough plancoins.")
+                showMessage(PlancoinMessage.REWARD_ERROR_INSUFFICIENT_FUNDS)
+            }
+            // otherwise, show success
+            else {
+                showMessage(PlancoinMessage.REWARD_BOUGHT)
             }
         }
     }
@@ -120,7 +136,7 @@ class PlancoinViewModel(
             // reload the list
             loadRewards()
             // show a message
-            showError("Reward deleted")
+            showMessage(PlancoinMessage.REWARD_DELETED)
         }
     }
 

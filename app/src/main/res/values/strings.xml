@@ -197,6 +197,9 @@
     <string name="plancoin_reward_edit_desc">Edit reward</string>
     <string name="plancoin_reward_edit">Edit</string>
     <string name="plancoin_reward_delete">Delete</string>
+    <string name="plancoin_reward_bought">Reward bought!</string>
+    <string name="plancoin_reward_insufficient_funds">Not enough plancoins</string>
+    <string name="plancoin_reward_deleted">Reward deleted</string>
 
     <!-- nux start screen -->
     <string name="nux_start_title">Welcome to Avoor</string>
@@ -215,6 +218,10 @@
     <string name="yes">Yes</string>
     <string name="cost">Cost</string>
     <string name="price">Price</string>
+
+    <!-- generic messages -->
+    <string name="no_internet">Please connect to the Internet</string>
+    <string name="unknown_error">An error has occurred</string>
 
     <!-- shuffle -->
     <string name="main_nav_shuffle">Shuffle</string>

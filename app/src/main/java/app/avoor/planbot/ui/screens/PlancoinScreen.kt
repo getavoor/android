@@ -38,7 +38,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -50,6 +52,7 @@ import app.avoor.planbot.ui.components.CreateRewardMenu
 import app.avoor.planbot.ui.components.RewardBody
 import app.avoor.planbot.ui.components.SettingsGroupLabel
 import app.avoor.planbot.ui.navigator.Navigator
+import app.avoor.planbot.ui.viewmodel.PlancoinMessage
 import app.avoor.planbot.ui.viewmodel.PlancoinViewModel
 import app.avoor.symbols.Icons
 import app.avoor.symbols.icons.Add
@@ -80,12 +83,49 @@ fun PlancoinScreen(
     var addRewardCost by remember { mutableIntStateOf(0) }
 
     val haptics = LocalHapticFeedback.current
+    val resources = LocalResources.current
 
-    // Show error in snackbar
-    LaunchedEffect(uiState.error) {
-        uiState.error?.let { error ->
-            snackbarHostState.showSnackbar(error)
-            viewModel.clearError()
+    // Show message in snackbar
+    LaunchedEffect(uiState.message) {
+        uiState.message?.let { message ->
+            when (message) {
+                PlancoinMessage.REWARD_BOUGHT -> {
+                    snackbarHostState.showSnackbar(
+                        resources.getString(R.string.plancoin_reward_bought)
+                    )
+                }
+
+                PlancoinMessage.REWARD_ERROR_INSUFFICIENT_FUNDS -> {
+                    snackbarHostState.showSnackbar(
+                        resources.getString(R.string.plancoin_reward_insufficient_funds)
+                    )
+                }
+
+                PlancoinMessage.REWARD_DELETED -> {
+                    snackbarHostState.showSnackbar(
+                        resources.getString(R.string.plancoin_reward_deleted)
+                    )
+                }
+
+                PlancoinMessage.NO_INTERNET -> {
+                    snackbarHostState.showSnackbar(
+                        resources.getString(R.string.no_internet)
+                    )
+                }
+
+                PlancoinMessage.GENERAL_ERROR -> {
+                    // check if there is an error description
+                    val error = uiState.errorDesc
+                    if (error != null) {
+                        snackbarHostState.showSnackbar(error)
+                    } else {
+                        snackbarHostState.showSnackbar(
+                            resources.getString(R.string.unknown_error)
+                        )
+                    }
+                }
+            }
+            viewModel.clearMessage()
         }
     }
 
@@ -218,7 +258,9 @@ fun PlancoinScreen(
                         viewModel.createReward(addRewardName, addRewardCost)
                     },
                     enabled = !addRewardName.isEmpty() && addRewardCost > 0,
-                    modifier = Modifier.fillMaxWidth().padding(16.dp)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
                 ) {
                     Text("Add")
                 }
@@ -251,20 +293,26 @@ fun PlancoinScreen(
                     }
                     Text(
                         "Edit reward",
-                        Modifier.fillMaxWidth().clickable(
-                            onClick = {
-                                showRewardEditor = true
-                            }
-                        ).padding(8.dp)
+                        Modifier
+                            .fillMaxWidth()
+                            .clickable(
+                                onClick = {
+                                    showRewardEditor = true
+                                }
+                            )
+                            .padding(8.dp)
                     )
                     Text(
                         "Delete reward",
-                        Modifier.fillMaxWidth().clickable(
-                            onClick = {
-                                showRewardContextMenu = false
-                                viewModel.deleteReward(reward)
-                            }
-                        ).padding(8.dp)
+                        Modifier
+                            .fillMaxWidth()
+                            .clickable(
+                                onClick = {
+                                    showRewardContextMenu = false
+                                    viewModel.deleteReward(reward)
+                                }
+                            )
+                            .padding(8.dp)
                     )
                 }
             }
