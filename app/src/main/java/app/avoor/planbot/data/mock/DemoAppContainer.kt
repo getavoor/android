@@ -15,7 +15,8 @@ import kotlinx.coroutines.MainScope
 class DemoAppContainer(
     override val authTokenProvider: AuthTokenProvider,
     override val preferenceStore: PreferenceStore,
-    override val database: AppDatabase
+    override val database: AppDatabase,
+    override val production: Boolean = false
 ) : AppContainer {
 
     override val authPreferenceStore: PreferenceStore by lazy {

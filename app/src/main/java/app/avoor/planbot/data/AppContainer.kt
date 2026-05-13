@@ -27,6 +27,7 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "gm
 val Context.secureDataStore: DataStore<Preferences> by preferencesDataStore(name = "avrtmp")
 
 interface AppContainer {
+    val production: Boolean
     val planbotApiRepository: PlanbotApiRepository
     val authTokenProvider: AuthTokenProvider
     val preferenceStore: PreferenceStore
@@ -46,7 +47,7 @@ class DefaultAppContainer(
     val filesDir: File,
     val contentResolver: ContentResolver,
     val appDatabase: AppDatabase,
-    val production: Boolean = false
+    override val production: Boolean = false
 ) : AppContainer {
 
     override val database by lazy {

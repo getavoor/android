@@ -16,6 +16,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -29,7 +31,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
@@ -299,6 +304,15 @@ class MainActivity : ComponentActivity() {
                                 navigator
                             )
                         }
+                    }
+                    // dev server watermark
+                    if (!(application as AvoorApplication).container.production) {
+                        Text(
+                            "DEV SERVER",
+                            Modifier.fillMaxWidth().padding(8.dp),
+                            fontSize = 36.sp,
+                            color = Color(255, 255, 255, 50)
+                        )
                     }
                 }
             }
