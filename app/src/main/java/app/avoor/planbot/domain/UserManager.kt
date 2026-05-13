@@ -135,11 +135,27 @@ class UserManager(
             return false
         }
         // Sign in using the access token
-        val user = apiRepository.loginUsingAccessToken()
-        // Save the user for short term access
-        this.user = user.removeTokens()
-        // Emit a successful state
-        _loginState.emit(LoginState.LoggedIn)
+        try {
+            val user = apiRepository.loginUsingAccessToken()
+            // Save the user for short term access
+            this.user = user.removeTokens()
+            // Emit a successful state
+            _loginState.emit(LoginState.LoggedIn)
+        } catch (ex: HttpException) {
+            // if the server returned error 400, the user has been deleted
+            if (ex.code() == 400) {
+                // delete the refresh token
+                preferenceStore.deleteRefreshToken()
+                // emit a state to return to the nux
+                _loginState.emit(LoginState.NuxRequired)
+            }
+            // otherwise, this is an unknown error, log it and show an error message
+            else {
+                Log.w("avr#um", "failed to login using access token: ${ex.message} ${ex.code()}")
+                _loginState.emit(LoginState.AutoLoginConnectionError)
+            }
+            return false
+        }
         return true
     }
 
