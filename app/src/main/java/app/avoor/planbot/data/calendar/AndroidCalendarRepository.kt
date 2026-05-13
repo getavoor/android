@@ -6,6 +6,7 @@ import android.content.ContentValues
 import android.provider.CalendarContract
 import android.provider.CalendarContract.Events
 import android.util.Log
+import app.avoor.planbot.BuildConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -112,7 +113,12 @@ class AndroidCalendarRepository(
                     maxOf(_startDate, startMillis)
                 } else _startDate
 
-                Log.d("avr#acr", "$title: $startDate - $endDate startMillis = $startMillis len=${endDate - startDate} lsh=${startMillis - startDate}")
+                if (BuildConfig.DEBUG) {
+                    Log.d(
+                        "avr#acr",
+                        "$title: $startDate - $endDate startMillis = $startMillis len=${endDate - startDate} lsh=${startMillis - startDate}"
+                    )
+                }
                 // ignore all day events by checking if they last 24 hours or more
                 // and ignore events that have a length of zero
                 if (endDate - startDate < 86_400_000 && endDate != startDate) {
@@ -310,7 +316,9 @@ class AndroidCalendarRepository(
         }
         cursor?.apply {
             Log.d("avr#acr", "cursor obtained")
-            Log.d("avr#acr", "${cursor.count} events")
+            if (BuildConfig.DEBUG) {
+                Log.d("avr#acr", "${cursor.count} events")
+            }
             // iterate until we find the first
             while (moveToNext()) {
                 // obtain info about event from android
@@ -318,7 +326,12 @@ class AndroidCalendarRepository(
                 val endDate = getLong(PROJECTION_EVENT_END)
                 val title = getString(PROJECTION_EVENT_TITLE)
                 val id = getString(PROJECTION_EVENT_ID)
-                Log.d("avr#acr", "considering event $title w/ sd $startDate ${start.epochSeconds}")
+                if (BuildConfig.DEBUG) {
+                    Log.d(
+                        "avr#acr",
+                        "considering event $title w/ sd $startDate ${start.epochSeconds}"
+                    )
+                }
 
                 // add the event if:
                 if (
@@ -334,7 +347,13 @@ class AndroidCalendarRepository(
                         startDate = Instant.fromEpochMilliseconds(startDate),
                         endDate = Instant.fromEpochMilliseconds(endDate)
                     )
-                    Log.d("avr#acr", "found first event $title w/ sd $startDate ${start.epochSeconds}")
+
+                    if (BuildConfig.DEBUG) {
+                        Log.d(
+                            "avr#acr",
+                            "found first event $title w/ sd $startDate ${start.epochSeconds}"
+                        )
+                    }
                     // stop the loop
                     break
                 }
@@ -359,7 +378,12 @@ class AndroidCalendarRepository(
 
                 // wait until the event ends, then recheck
                 val delayMs = event.endDate.toEpochMilliseconds().minus(now.toEpochMilliseconds())
-                Log.d("avr#acr", "delayMs=${delayMs} endDate=${event.endDate.toEpochMilliseconds()} now=${now.toEpochMilliseconds()}")
+                if (BuildConfig.DEBUG) {
+                    Log.d(
+                        "avr#acr",
+                        "delayMs=${delayMs} endDate=${event.endDate.toEpochMilliseconds()} now=${now.toEpochMilliseconds()}"
+                    )
+                }
                 delayUnlessForceRecheck(delayMs.coerceAtLeast(1000L))
             } else {
                 // if it hasn't, wait for the maximum
