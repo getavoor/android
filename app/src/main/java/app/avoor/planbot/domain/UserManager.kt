@@ -59,8 +59,17 @@ class UserManager(
             authTokenProvider.deleteAccessToken()
             return autoLogin()
         }
-        // Otherwise the user is signed in
-        _loginState.emit(LoginState.LoggedIn)
+        // check if we have a user
+        user?.let { user ->
+            // check if the user needs to be verified
+            if (user.confirmed) {
+                // the user is fully logged in
+                _loginState.emit(LoginState.LoggedIn)
+            } else {
+                // tell the app that verification is required
+                _loginState.emit(LoginState.VerificationRequired)
+            }
+        }
         return true
     }
 
@@ -139,8 +148,16 @@ class UserManager(
             val user = apiRepository.loginUsingAccessToken()
             // Save the user for short term access
             this.user = user.removeTokens()
-            // Emit a successful state
-            _loginState.emit(LoginState.LoggedIn)
+            // check if the user needs to be verified
+            if (user.confirmed) {
+                // Emit a successful state
+                _loginState.emit(LoginState.LoggedIn)
+                Log.d("avr#um", "done")
+            } else {
+                // tell the app that verification is required
+                _loginState.emit(LoginState.VerificationRequired)
+                Log.d("avr#um", "done (user needs verification)")
+            }
         } catch (ex: HttpException) {
             // if the server returned error 400, the user has been deleted
             if (ex.code() == 400) {
@@ -182,9 +199,16 @@ class UserManager(
             // Save the user for short term access
             this.user = user.removeTokens()
             Log.d("avr#um", "updated user")
-            // Emit a successful state
-            _loginState.emit(LoginState.LoggedIn)
-            Log.d("avr#um", "done")
+            // check if the user needs to be verified
+            if (user.confirmed) {
+                // Emit a successful state
+                _loginState.emit(LoginState.LoggedIn)
+                Log.d("avr#um", "done")
+            } else {
+                // tell the app that verification is required
+                _loginState.emit(LoginState.VerificationRequired)
+                Log.d("avr#um", "done (user needs verification)")
+            }
             return 200
         }
         // Detect if the server is down
