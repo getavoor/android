@@ -8,7 +8,7 @@ class UriUtils {
          * Check if the given URI is an Avoor URL.
          */
         fun isAvoorUrl(uri: Uri): Boolean {
-            return uri.host == "avoor.app" || uri.host == "avoor-app.oa.r.appspot.com"
+            return uri.host == "avoor.app" || uri.host == "avoor-app.oa.r.appspot.com" || uri.scheme == "avoor"
         }
     }
 }
