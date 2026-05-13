@@ -66,13 +66,6 @@ class PlancoinController(
                 }
             }
         }
-
-        // Keep UserManager in sync with our balance for UI components
-        scope.launch {
-            balance.collect { newBalance ->
-                userManager.updateLocalUser(plancoins = newBalance)
-            }
-        }
     }
 
     /**

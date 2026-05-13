@@ -274,14 +274,4 @@ class UserManager(
         return false
     }
 
-    fun updatePlancoins(amount: Int) {
-        user = user?.copy(plancoins = amount)
-    }
-
-    fun updateLocalUser(plancoins: Int? = null) {
-        // do not update empty user
-        if (user == null) return
-
-        plancoins?.let { user = user!!.copy(plancoins = it) }
-    }
 }
