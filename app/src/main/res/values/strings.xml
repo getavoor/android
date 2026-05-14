@@ -32,7 +32,7 @@
     <string name="nux_streak_title">Your streak</string>
     <string name="nux_streak_body_phase1">Time for the fun part! This is your streak. Your streak counts every day you use the timer. Let\'s get day 1 out of the way.</string>
     <string name="nux_streak_body_phase2">
-        Skip a day, the streak resets. But life happens, and that\'s where streak skips save you. A streak skip protects your streak from getting reset. You only have 3 of them.
+        Skip a day, the streak resets. But life happens, and that\'s where streak pauses save you. A streak pause protects your streak from getting reset. You only have 3 of them.
     </string>
     <!-- nux - plancoins -->
     <string name="nux_plancoin_title">Plancoins</string>
@@ -173,17 +173,17 @@
 
     <!-- streak screen -->
     <string name="streak_current">Current streak</string>
-    <string name="streak_freeze_label">Streak freezes</string>
+    <string name="streak_freeze_label">Streak pauses</string>
     <string name="streak_longest">Longest streak</string>
     <string name="streak_updated_today">Updated today</string>
     <string name="streak_not_updated">Complete a focus session to update</string>
-    <string name="streak_freeze_used">Freeze used today</string>
+    <string name="streak_freeze_used">Pause used today</string>
     <string name="streak_freeze_available">Available</string>
-    <string name="streak_use_freeze">Use Streak Freeze</string>
+    <string name="streak_use_freeze">Use streak pause</string>
     <string name="streak_refresh">Refresh</string>
     <string name="streak_info_title">About streaks</string>
     <string name="streak_info_desc_l1">Complete at least one focus session each day to maintain your streak. Missing a day will reset your streak to zero.</string>
-    <string name="streak_info_desc_l2">Streak freezes protect your streak for one day. If you miss a day and have a freeze available, it will be used automatically.</string>
+    <string name="streak_info_desc_l2">Streak pauses protect your streak for one day. If you miss a day and have a pause available, it will be used automatically.</string>
 
     <!-- plancoin screen -->
     <string name="plancoin_reward_group">Your rewards</string>
