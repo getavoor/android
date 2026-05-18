@@ -1,7 +1,7 @@
 package app.avoor.planbot.data
 
 import androidx.room.TypeConverter
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 class Converters {
     @TypeConverter
