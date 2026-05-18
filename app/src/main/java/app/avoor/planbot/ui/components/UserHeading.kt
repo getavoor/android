@@ -33,7 +33,7 @@ fun UserHeading(user: UserWithoutTokens?, modifier: Modifier = Modifier) {
         ProfilePicture(
             user,
             null,
-            size=128.dp
+            size = 96.dp
         )
 
         Text(
