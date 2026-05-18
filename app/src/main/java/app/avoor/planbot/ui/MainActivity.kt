@@ -2,7 +2,6 @@ package app.avoor.planbot.ui
 
 import android.content.ActivityNotFoundException
 import android.content.ComponentName
-import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.net.Uri
@@ -26,9 +25,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -106,7 +102,7 @@ class MainActivity : ComponentActivity() {
         super.onStart()
         // Bind to pomo service.
         Intent(this, PomodoroService::class.java).also { intent ->
-            bindService(intent, pomoConnection, Context.BIND_AUTO_CREATE)
+            bindService(intent, pomoConnection, BIND_AUTO_CREATE)
         }
     }
 
@@ -137,9 +133,6 @@ class MainActivity : ComponentActivity() {
             val viewModel: MainViewModel = viewModel(factory = MainViewModel.Factory)
             val viewState by viewModel.uiState.collectAsState()
 
-            var loginAlreadyOpened by remember {
-                mutableStateOf(false)
-            }
             PlanbotTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
