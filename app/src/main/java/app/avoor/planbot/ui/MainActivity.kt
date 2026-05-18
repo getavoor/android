@@ -170,7 +170,11 @@ class MainActivity : ComponentActivity() {
                     }
                     NavHost(navController = navController, startDestination = Screen.NONE.toString()) {
                         composable(Screen.MAIN.toString()) {
-                            MainScreen(navigator, (application as AvoorApplication).container.calendarRepository)
+                            MainScreen(
+                                navigator,
+                                userManager,
+                                (application as AvoorApplication).container.calendarRepository
+                            )
                         }
                         composable(Screen.TIMER.toString()) {
                             // start the timer if necessary

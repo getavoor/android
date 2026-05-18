@@ -25,38 +25,16 @@ import coil.request.ImageRequest
 
 @Composable
 fun UserHeading(user: UserWithoutTokens?, modifier: Modifier = Modifier) {
-    val imageModifier = Modifier.size(128.dp).clip(RoundedCornerShape(64.dp))
     Column(
         modifier = Modifier.fillMaxWidth().then(modifier),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        if (user != null) {
-            // Load the user's profile picture, showing a placeholder if one wasn't uploaded
-            val context = LocalContext.current
-            val imageRequest = ImageRequest.Builder(context)
-                .data(user.photoUrl)
-                .memoryCacheKey(user.photoUrl)
-                .diskCacheKey(user.photoUrl)
-                .placeholder(R.drawable.default_pfp)
-                .error(R.drawable.default_pfp)
-                .fallback(R.drawable.default_pfp)
-                .diskCachePolicy(CachePolicy.ENABLED)
-                .memoryCachePolicy(CachePolicy.ENABLED)
-                .build()
-
-            AsyncImage(
-                model = imageRequest,
-                contentDescription = null,
-                modifier = imageModifier
-            )
-        } else {
-            Image(
-                painter = painterResource(id = R.drawable.default_pfp),
-                contentDescription = null,
-                modifier = imageModifier
-            )
-        }
+        ProfilePicture(
+            user,
+            null,
+            size=128.dp
+        )
 
         Text(
             text = user?.name ?: "Please sign in",

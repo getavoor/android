@@ -1,7 +1,10 @@
 package app.avoor.planbot.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -45,6 +48,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import app.avoor.planbot.R
 import app.avoor.planbot.data.calendar.CalendarRepository
+import app.avoor.planbot.domain.UserManager
+import app.avoor.planbot.ui.components.ProfilePicture
 import app.avoor.planbot.ui.components.ShuffleWarningDialog
 import app.avoor.planbot.ui.navigator.Navigator
 import app.avoor.planbot.ui.viewmodel.Screen
@@ -66,6 +71,7 @@ import kotlin.time.Clock
 @Composable
 fun MainScreen(
     navigator: Navigator,
+    userManager: UserManager,
     calendarRepository: CalendarRepository
 ) {
     val currentEvent by calendarRepository.getCurrentEvent().collectAsState(initial = null)
@@ -80,7 +86,6 @@ fun MainScreen(
             onDismiss = {showShuffleWarning = false}
         )
     }
-
 
     val topBarBackground = Brush.verticalGradient(
         0.25f to MaterialTheme.colorScheme.background,
@@ -120,7 +125,20 @@ fun MainScreen(
 
             MainTopAppBar(
                 title = {
-                    Text(date, style=MaterialTheme.typography.titleLarge)
+                    Row(
+                        Modifier.fillMaxWidth()
+                    ) {
+                        Text(date, style=MaterialTheme.typography.titleLarge)
+                        Spacer(Modifier.weight(1f))
+                        ProfilePicture(
+                            userManager.getCurrentUser(),
+                            stringResource(R.string.main_nav_profile),
+                            size = 32.dp,
+                            modifier = Modifier.clickable {
+                                navigator.navigate(Screen.PROFILE)
+                            }
+                        )
+                    }
                 },
                 modifier = Modifier
                     .offset { IntOffset(0, offsetY.roundToInt()) }
