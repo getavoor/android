@@ -125,5 +125,10 @@ enum class Screen {
     /**
      * Screen that shuffles events.
      */
-    SHUFFLE_PREP
+    SHUFFLE_PREP,
+
+    /**
+     * Profile screen.
+     */
+    PROFILE
 }

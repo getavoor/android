@@ -56,6 +56,7 @@ import app.avoor.planbot.ui.screens.DiscoveryScreen
 import app.avoor.planbot.ui.screens.GroupDiscoveryScreen
 import app.avoor.planbot.ui.screens.JoinGroupDiscoveryScreen
 import app.avoor.planbot.ui.screens.LoginScreen
+import app.avoor.planbot.ui.screens.MainProfileScreen
 import app.avoor.planbot.ui.screens.MainScreen
 import app.avoor.planbot.ui.screens.MainSettingsScreen
 import app.avoor.planbot.ui.screens.NuxEndScreen
@@ -294,6 +295,12 @@ class MainActivity : ComponentActivity() {
                         composable(route = Screen.SHUFFLE_PREP.toString()) {
                             ShufflePrepScreen(
                                 (application as AvoorApplication).container.shuffleImpl,
+                                navigator
+                            )
+                        }
+                        composable(route = Screen.PROFILE.toString()) {
+                            MainProfileScreen(
+                                pfpManager,
                                 navigator
                             )
                         }
