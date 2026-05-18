@@ -51,6 +51,10 @@ android {
         }
     }
     compileOptions {
+        // Flag to enable support for the new language APIs
+        isCoreLibraryDesugaringEnabled = true
+
+        // Sets Java compatibility to Java 11
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
@@ -74,6 +78,9 @@ android {
 }
 
 dependencies {
+    // desugaring
+    coreLibraryDesugaring(libs.desugar.jdk.libs)
+
     // compose and androidx UI related libraries
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
