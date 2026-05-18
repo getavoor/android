@@ -3,6 +3,7 @@ package app.avoor.planbot.ui.screens
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -14,6 +15,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
@@ -101,9 +103,8 @@ fun LoginScreen(
             }
 
             Column(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.spacedBy(6.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                modifier = Modifier.fillMaxSize().then(paddingModifier),
+                verticalArrangement = Arrangement.spacedBy(6.dp)
             ) {
 
                 OutlinedTextField(
@@ -115,7 +116,6 @@ fun LoginScreen(
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .then(paddingModifier)
                 )
                 OutlinedTextField(
                     value = viewState.password,
@@ -146,12 +146,15 @@ fun LoginScreen(
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .then(paddingModifier)
                 )
 
-                Text(stringResource(R.string.login_reg_cta))
-                OutlinedButton(onClick = { viewModel.switchToRegister() }) {
-                    Text(stringResource(R.string.login_button_reg))
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(stringResource(R.string.login_reg_cta))
+                    TextButton(onClick = { viewModel.switchToRegister() }) {
+                        Text(stringResource(R.string.login_button_reg))
+                    }
                 }
             }
         }
