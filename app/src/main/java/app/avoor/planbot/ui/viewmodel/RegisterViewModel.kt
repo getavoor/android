@@ -118,10 +118,20 @@ class RegisterViewModel (
             }
             // if the server returns an error, show an action error
             catch (e: HttpException) {
-                _uiState.update {
-                    it.copy(
-                        showActionError = true
-                    )
+                // HTTP 400 is returned if the account already exists
+                // (assuming that the client is not at fault)
+                if (e.code() == 400) {
+                    _uiState.update {
+                        it.copy(
+                            accountExists = true
+                        )
+                    }
+                } else {
+                    _uiState.update {
+                        it.copy(
+                            showActionError = true
+                        )
+                    }
                 }
             }
             _uiState.update {

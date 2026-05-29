@@ -36,6 +36,7 @@ import app.avoor.planbot.ui.components.FailedActionDialog
 import app.avoor.planbot.ui.components.LoadingBar
 import app.avoor.planbot.ui.navigator.Navigator
 import app.avoor.planbot.ui.viewmodel.RegisterViewModel
+import app.avoor.planbot.ui.viewmodel.Screen
 import app.avoor.symbols.Icons
 import app.avoor.symbols.icons.ArrowBack
 import tech.cataspect.m3x.TwoButtons
@@ -50,6 +51,10 @@ fun RegisterScreen(
     val viewState by viewModel.uiState.collectAsState()
 
     val paddingModifier = Modifier.padding(horizontal = 10.dp, vertical = 0.dp)
+
+    if (viewState.accountExists) {
+        navigator.replace(Screen.LOGIN)
+    }
 
     if (viewState.showConnectionError) {
         ConnectionErrorDialog(

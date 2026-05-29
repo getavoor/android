@@ -49,5 +49,9 @@ data class RegisterState (
     /**
      * Is the email valid?
      */
-    val emailValid: Boolean = false
+    val emailValid: Boolean = false,
+    /**
+     * Does this account already exist?
+     */
+    val accountExists: Boolean = false
 )
