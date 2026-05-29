@@ -125,7 +125,20 @@
     <string name="storage_kb">%.1f KB</string>
     <string name="storage_mb">%.1f MB</string>
     <string name="storage_gb">%.1f GB</string>
+    <!-- here "B" means bytes -->
     <string name="storage_b">%.1f B</string>
+
+    <!-- amount strings (generic) -->
+    <string name="amount_unit">%.1f</string>
+    <string name="amount_kilo">%.1fK</string>
+    <string name="amount_mil">%.1fM</string>
+    <!-- here "B" means a billion -->
+    <string name="amount_bil">%.1fB</string>
+
+    <!-- time strings (generic) -->
+    <string name="time_day">%.1fd</string>
+    <string name="time_month">%.1fm</string>
+    <string name="time_year">%.1fy</string>
 
     <!-- verification -->
     <string name="verify_cta_title">Almost there!</string>
