@@ -146,10 +146,16 @@ class NetworkPlanbotApiRepository(
         private const val MILLIS_IN_DAY = 24 * 60 * 60 * 1000L
     }
 
-    // TODO these functions have nothing to do with the API, maybe move into the domain layer?
+    @Deprecated(
+        "Moved to the domain layer; obtain a copy of `AppDatabase` and use the extension method `AppDatabase.getStreakFlow()` from `.domain` instead"
+    )
     override fun getStreakFlow(): Flow<Streak?> {
         return db.streakDao().getFlow()
     }
+
+    @Deprecated(
+        "Moved to the domain layer; obtain a copy of `AppDatabase` and use the extension method `AppDatabase.getStreak()` from `.domain` instead"
+    )
     override suspend fun getStreak(): Streak? = withContext(Dispatchers.IO) {
         db.streakDao().get()
     }

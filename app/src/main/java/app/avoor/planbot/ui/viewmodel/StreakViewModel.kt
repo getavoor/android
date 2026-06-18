@@ -6,7 +6,10 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import app.avoor.planbot.AvoorApplication
+import app.avoor.planbot.data.AppDatabase
 import app.avoor.planbot.data.api.PlanbotApiRepository
+import app.avoor.planbot.domain.getStreak
+import app.avoor.planbot.domain.getStreakFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,6 +17,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class StreakViewModel(
+    private val db: AppDatabase,
     private val repository: PlanbotApiRepository
 ) : ViewModel() {
 
@@ -27,7 +31,7 @@ class StreakViewModel(
 
     private fun observeStreak() {
         viewModelScope.launch {
-            repository.getStreakFlow().collect { streak ->
+            db.getStreakFlow().collect { streak ->
                 if (streak != null) {
                     _uiState.update {
                         it.copy(
@@ -66,7 +70,7 @@ class StreakViewModel(
                     }
                 } else {
                     // Fall back to local data
-                    val localStreak = repository.getStreak()
+                    val localStreak = db.getStreak()
                     if (localStreak != null) {
                         _uiState.update {
                             it.copy(
@@ -139,6 +143,7 @@ class StreakViewModel(
                 val application = (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as AvoorApplication)
                 val appCtr = application.container
                 StreakViewModel(
+                    db = appCtr.database,
                     repository = appCtr.planbotApiRepository
                 )
             }

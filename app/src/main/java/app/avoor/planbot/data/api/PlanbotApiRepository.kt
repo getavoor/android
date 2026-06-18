@@ -202,11 +202,17 @@ interface PlanbotApiRepository {
     /**
      * Get the current streak state as a Flow for real-time updates.
      */
+    @Deprecated(
+        "Moved to the domain layer; obtain a copy of `AppDatabase` and use the extension method `AppDatabase.getStreakFlow()` from `.domain` instead"
+    )
     fun getStreakFlow(): Flow<Streak?>
 
     /**
      * Get the current streak state.
      */
+    @Deprecated(
+        "Moved to the domain layer; obtain a copy of `AppDatabase` and use the extension method `AppDatabase.getStreakFlow()` from `.domain` instead"
+    )
     suspend fun getStreak(): Streak?
 
     /**
