@@ -3,12 +3,6 @@ package app.avoor.liboc
 class ShuffleUtils {
 
     /**
-     * A native method that is implemented by the 'liboc' native library,
-     * which is packaged with this application.
-     */
-    external fun stringFromJNI(): String
-
-    /**
      * Shuffles the provided array.
      */
     external fun shuffle(numbers: Array<Int>, numSize: Int)

@@ -3,14 +3,6 @@
 #include <cstdio>
 #include <iostream>
 
-extern "C" JNIEXPORT jstring JNICALL
-Java_app_avoor_liboc_ShuffleUtils_stringFromJNI(
-        JNIEnv* env,
-        jobject /* this */) {
-    std::string hello = "Hello from C++";
-    return env->NewStringUTF(hello.c_str());
-}
-
 void swap(
     JNIEnv *env,
     jobjectArray numbers,
