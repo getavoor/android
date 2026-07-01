@@ -145,6 +145,11 @@ dependencies {
     // workmanager
     implementation(libs.androidx.work.runtime.ktx)
 
+    // sign in with google
+    implementation(libs.androidx.credentials) //noinspection LoginCredentials
+    implementation(libs.androidx.credentials.play) //noinspection LoginCredentials
+    implementation(libs.googleid)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

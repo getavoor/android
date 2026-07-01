@@ -2,8 +2,10 @@
 accompanistPermissions = "0.37.3"
 agp = "8.13.2"
 coilCompose = "2.7.0"
+credentials = "1.7.0-alpha02"
 datastorePreferences = "1.2.0"
 desugar_jdk_libs = "2.1.5"
+googleid = "1.2.0"
 graphicsShapes = "1.1.0"
 kotlin = "2.3.0"
 coreKtx = "1.17.0"
@@ -31,6 +33,10 @@ lifecycleService = "2.10.0"
 [libraries]
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+#noinspection LoginCredentials
+androidx-credentials = { module = "androidx.credentials:credentials", version.ref = "credentials" }
+#noinspection LoginCredentials
+androidx-credentials-play = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "credentials" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 androidx-graphics-shapes = { module = "androidx.graphics:graphics-shapes", version.ref = "graphicsShapes" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
@@ -39,6 +45,8 @@ androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 desugar_jdk_libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
+#noinspection LoginCredentials
+googleid = { module = "com.google.android.libraries.identity.googleid:googleid", version.ref = "googleid" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
