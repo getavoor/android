@@ -39,6 +39,8 @@ android {
 
             buildConfigField("String", "GOOGLE_APIKEY",
                 "${properties["GOOGLE_APIKEY_RELEASE"]}")
+            buildConfigField("String", "GOOGLE_CLIENT",
+                "${properties["GOOGLE_CLIENT_RELEASE"]}")
             buildConfigField("String", "SIGNING_CERT",
                 "${properties["SIGNING_CERT_RELEASE"]}")
         }
@@ -46,6 +48,8 @@ android {
         debug {
             buildConfigField("String", "GOOGLE_APIKEY",
                 "${properties["GOOGLE_APIKEY_DEBUG"]}")
+            buildConfigField("String", "GOOGLE_CLIENT",
+                "${properties["GOOGLE_CLIENT_DEBUG"]}")
             buildConfigField("String", "SIGNING_CERT",
                 "${properties["SIGNING_CERT_DEBUG"]}")
         }
