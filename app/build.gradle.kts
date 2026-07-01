@@ -91,11 +91,10 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.compose.foundation)
 
     // use an alpha version of the material3 library for m3 expressive components
     implementation(libs.androidx.material3)
-    // use a beta version of compose foundation for list item animations
-    implementation(libs.androidx.compose.foundation)
 
     // androidx navigation
     implementation(libs.androidx.navigation.compose)
