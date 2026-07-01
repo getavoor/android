@@ -120,7 +120,7 @@ dependencies {
     // m3x (extra UI library)
     implementation(libs.m3x)
 
-    // socket.io (used during place discovery)
+    // socket.io (used for fluff)
     implementation(libs.socketio.client) {
         // excluding org.json which is provided by Android
         exclude("org.json", "json")
