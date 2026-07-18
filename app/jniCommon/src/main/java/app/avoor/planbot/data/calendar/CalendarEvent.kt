@@ -36,5 +36,9 @@ data class CalendarEvent(
      * for a _planned_ gap between time blocks, you should instead use a break, i.e.
      * an event with [isBreak] set to true.
      */
-    val isGap: Boolean = false
+    val isGap: Boolean = false,
+    /**
+     * Can this event be shuffled?
+     */
+    val canBeShuffled: Boolean = true
 )

@@ -12,7 +12,8 @@ class ShuffleImpl(
      * Shuffles the user's calendar events.
      */
     suspend fun shuffleEvents() {
-        val events = calendarRepository.getEvents()
+        // get all events that can be shuffled
+        val events = calendarRepository.getEvents().filter { it.canBeShuffled }
         if (events.size <= 1) return
 
         val indices = Array(events.size) { it }
